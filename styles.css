@@ -1,0 +1,502 @@
+/* CRANE ENGINEERING - styles */
+/* Палитра: тёмный графит / крановый жёлтый / белый / чёрный */
+
+:root{
+  --bg:#0C0E11;
+  --bg2:#101318;
+  --panel:#151920;
+  --panel2:#1B2028;
+  --ink:#F4F5F2;
+  --mut:#9AA3AD;
+  --yellow:#FFC400;
+  --yellow2:#FFD84D;
+  --black:#08090B;
+  --line:rgba(255,255,255,.09);
+  --hdr-h:72px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:calc(var(--hdr-h) + 18px)}
+html,body{overflow-x:hidden}
+@supports (overflow-x:clip){html,body{overflow-x:clip}}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:400 16px/1.6 "Onest","Segoe UI",sans-serif;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:"Geologica","Segoe UI",sans-serif}
+button{font-family:inherit}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+
+/* ---------- прогресс ---------- */
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;z-index:120;background:var(--yellow);transform-origin:0 50%;transform:scaleX(0)}
+
+/* ---------- кнопки ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font:600 15px/1 "Geologica",sans-serif;letter-spacing:.02em;
+  border:0;border-radius:14px;padding:15px 24px;cursor:pointer;
+  transition:transform .25s,box-shadow .25s,background .25s,color .25s;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-y{background:var(--yellow);color:var(--black)}
+.btn-y:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,196,0,.28);background:var(--yellow2)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+.btn-lg{padding:18px 30px;font-size:16px}
+.btn-off{background:var(--panel2);color:#5E6670;cursor:not-allowed;box-shadow:inset 0 0 0 1px var(--line)}
+.btn-off:hover{transform:none;box-shadow:inset 0 0 0 1px var(--line)}
+
+/* ---------- шапка ---------- */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--hdr-h);
+  background:transparent;transition:background .35s,box-shadow .35s;
+}
+.hdr.scrolled{background:rgba(10,12,15,.96);box-shadow:0 1px 0 var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:var(--hdr-h)}
+
+.logo{display:flex;align-items:center;gap:11px;position:relative;z-index:102}
+.logo-hook{width:38px;height:38px;flex:none;border-radius:9px}
+.logo-txt{display:flex;flex-direction:column;line-height:1}
+.logo-txt b{font:800 17px/1 "Geologica",sans-serif;letter-spacing:.30em;color:var(--ink)}
+.logo-txt i{font:600 8.5px/1 "Geologica",sans-serif;font-style:normal;letter-spacing:.415em;color:var(--yellow);margin-top:5px}
+
+.nav{display:flex;gap:30px;align-items:center}
+.nav>a{font:500 14.5px/1 "Geologica",sans-serif;color:var(--mut);letter-spacing:.02em;position:relative;padding:6px 0;transition:color .25s}
+.nav>a:hover{color:var(--ink)}
+.nav>a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--yellow);transition:width .3s}
+.nav>a:hover::after{width:100%}
+.nav-foot{display:none}
+
+.hdr-right{display:flex;align-items:center;gap:12px;position:relative;z-index:102}
+.btn-hdr{padding:11px 18px;font-size:13.5px}
+
+.lang{display:flex;gap:0;background:rgba(255,255,255,.14);border-radius:10px;padding:3px}
+.lang button{
+  border:0;background:transparent;border-radius:7px;cursor:pointer;
+  padding:6px 12px;font:700 12px/1 "Geologica",sans-serif;letter-spacing:.06em;
+  color:rgba(255,255,255,.75);transition:background .25s,color .25s;
+}
+.lang button:hover{color:#fff}
+.lang button.is-active{background:#fff;color:#12151A;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.lang button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;position:relative;z-index:102}
+.burger span{display:block;width:24px;height:2.5px;border-radius:2px;background:var(--ink);transition:transform .3s,opacity .3s}
+body.menu-open .burger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0}
+body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 40%}
+.hero-shade{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(8,9,11,.62) 0%,rgba(8,9,11,.18) 34%,rgba(8,9,11,.42) 62%,rgba(8,9,11,.92) 100%),
+    linear-gradient(100deg,rgba(8,9,11,.72) 0%,rgba(8,9,11,.25) 55%,rgba(8,9,11,0) 100%);
+}
+.hero-in{position:relative;z-index:2;padding-bottom:96px;padding-top:150px;width:100%}
+
+.kicker{display:flex;align-items:center;gap:12px;font:700 12.5px/1.5 "Geologica",sans-serif;letter-spacing:.22em;color:var(--yellow)}
+.tick{width:11px;height:11px;background:var(--yellow);flex:none}
+
+.h1{margin-top:22px}
+.h1-line{display:block;overflow:hidden;padding-bottom:.06em}
+.h1-a,.h1-b,.h1-c{display:inline-block;transform:translateY(112%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.h1-a{font:700 clamp(26px,4.4vw,58px)/1.06 "Geologica",sans-serif;letter-spacing:.045em;color:var(--ink)}
+.h1-b{font:800 clamp(56px,9.6vw,130px)/.98 "Geologica",sans-serif;letter-spacing:.005em;color:var(--yellow)}
+.h1-c{
+  font:800 clamp(30px,5vw,66px)/1 "Geologica",sans-serif;letter-spacing:.02em;
+  color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.85);vertical-align:.12em;
+  transition-delay:.12s;
+}
+.is-loaded .h1-a,.is-loaded .h1-b,.is-loaded .h1-c{transform:translateY(0)}
+.h1-line:nth-child(2) .h1-b{transition-delay:.1s}
+
+.lead{
+  margin-top:24px;font-size:clamp(15.5px,1.5vw,18.5px);color:rgba(244,245,242,.88);
+  opacity:0;transform:translateY(18px);transition:opacity .8s .5s,transform .8s .5s;
+}
+.is-loaded .lead{opacity:1;transform:none}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;opacity:0;transform:translateY(18px);transition:opacity .8s .68s,transform .8s .68s}
+.is-loaded .hero-cta{opacity:1;transform:none}
+
+.hero-hook{position:absolute;right:56px;bottom:120px;z-index:2;animation:hookSway 3.6s ease-in-out infinite;transform-origin:50% 0}
+@keyframes hookSway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+
+.hazard{
+  height:12px;
+  background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--black) 18px 36px);
+}
+.hero-hazard{position:absolute;left:0;right:0;bottom:0;z-index:3;animation:hz 1.8s linear infinite}
+@keyframes hz{to{background-position:51px 0}}
+
+/* ---------- trust ---------- */
+.trust{background:var(--bg2);border-bottom:1px solid var(--line)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:44px;padding-bottom:44px}
+.t-cell{padding:6px 28px;border-left:1px solid var(--line)}
+.t-cell:first-child{border-left:0;padding-left:0}
+.t-num{font:800 clamp(38px,3.6vw,54px)/1 "Geologica",sans-serif;color:var(--ink);white-space:nowrap}
+.t-num span{color:var(--yellow)}
+.t-lab{margin-top:10px;font-size:14px;color:var(--mut);line-height:1.45}
+
+/* ---------- marquee ---------- */
+.mq{overflow:hidden;background:var(--yellow);transform:rotate(-1.4deg);margin:56px -24px 8px;box-shadow:0 14px 44px rgba(0,0,0,.4)}
+.mq-in{display:flex;white-space:nowrap;width:max-content;animation:mq 30s linear infinite}
+.mq-t{font:800 clamp(19px,2.6vw,30px)/1 "Geologica",sans-serif;color:var(--black);letter-spacing:.04em;padding:16px 0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- секции ---------- */
+.sec{padding:104px 0 96px}
+.sec-alt{background:var(--bg2)}
+.sec-head{position:relative;margin-bottom:48px}
+.sec-no{
+  display:block;font:800 clamp(56px,7vw,92px)/.9 "Geologica",sans-serif;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.13);margin-bottom:6px;
+}
+.sec-head h2{
+  font:700 clamp(30px,4.4vw,52px)/1.1 "Geologica",sans-serif;letter-spacing:.01em;
+  text-transform:uppercase;
+}
+.sec-head h2::after{
+  content:"";display:block;width:64px;height:5px;background:var(--yellow);margin-top:16px;
+}
+.sec-lead{margin-top:16px;color:var(--mut);font-size:clamp(15px,1.4vw,17.5px)}
+.sec-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+
+/* ---------- бенто-каталог ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{
+  position:relative;border-radius:20px;overflow:hidden;background:var(--panel);
+  min-height:330px;display:flex;align-items:flex-end;
+}
+.c-a{grid-column:span 7;min-height:430px}
+.c-b{grid-column:span 5;min-height:430px}
+.c-c,.c-d,.c-e,.c-f,.c-g,.c-h{grid-column:span 4}
+.card>img,.card>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s}
+.card:hover>img,.card:hover>video{transform:scale(1.055)}
+.card::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(185deg,rgba(8,9,11,.06) 38%,rgba(8,9,11,.88) 82%);
+  pointer-events:none;
+}
+.card-no{
+  position:absolute;top:16px;left:18px;z-index:2;
+  font:800 15px/1 "Geologica",sans-serif;color:var(--black);
+  background:var(--yellow);padding:7px 10px;border-radius:8px;
+}
+.card-live{
+  position:absolute;top:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;
+  font:600 11.5px/1 "Onest",sans-serif;letter-spacing:.04em;color:var(--ink);
+  background:rgba(8,9,11,.68);padding:8px 12px;border-radius:99px;
+}
+.card-live i{width:8px;height:8px;border-radius:50%;background:#FF4B33;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.card-body{position:relative;z-index:2;width:100%;padding:24px 24px 22px}
+.card-body h3{font:700 clamp(20px,2vw,26px)/1.15 "Geologica",sans-serif}
+.card-body p{margin-top:7px;font-size:14.5px;color:rgba(244,245,242,.78)}
+.card-cta{
+  margin-top:15px;display:inline-flex;align-items:center;gap:9px;
+  font:700 13.5px/1 "Geologica",sans-serif;color:var(--yellow);letter-spacing:.03em;
+}
+.card-cta svg{width:17px;height:17px;transition:transform .3s}
+.card-cta:hover svg{transform:translateX(5px)}
+.card-ask{background:linear-gradient(150deg,var(--panel2),var(--panel));box-shadow:inset 0 0 0 1.5px rgba(255,196,0,.35)}
+.card-ask::after{display:none}
+.card-ask-body h3{color:var(--yellow)}
+.card-ask-body .btn{margin-top:18px}
+
+/* комплектующие */
+.comp{margin-top:64px;background:var(--panel);border-radius:24px;padding:38px 38px 42px;position:relative;overflow:hidden}
+.comp::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 14px,transparent 14px 28px)}
+.comp-head h3{font:700 clamp(22px,2.6vw,30px)/1.15 "Geologica",sans-serif;text-transform:uppercase}
+.comp-head p{margin-top:8px;color:var(--mut);font-size:15px}
+.comp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:28px}
+.comp-item{display:flex;flex-direction:column;gap:10px;border-radius:14px}
+.comp-item img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+.comp-item:hover img{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.5),0 0 0 1.5px var(--yellow)}
+.comp-item span{font:600 13.5px/1.3 "Geologica",sans-serif;color:rgba(244,245,242,.85)}
+
+/* ---------- металлообработка ---------- */
+.met-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+.met-row{
+  display:grid;grid-template-columns:52px 1fr 26px;align-items:center;gap:16px;
+  padding:21px 6px;border-top:1px solid var(--line);transition:background .3s,padding .3s;
+  border-radius:10px;
+}
+.met-row:last-child{border-bottom:1px solid var(--line)}
+.met-no{font:800 15px/1 "Geologica",sans-serif;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);transition:color .3s,-webkit-text-stroke .3s;font-size:22px}
+.met-txt h3{font:600 clamp(18px,1.9vw,23px)/1.2 "Geologica",sans-serif;transition:color .25s}
+.met-txt p{margin-top:4px;font-size:14px;color:var(--mut)}
+.met-arr{width:24px;height:24px;color:var(--yellow);opacity:0;transform:translateX(-10px);transition:opacity .3s,transform .3s}
+.met-row:hover{background:rgba(255,255,255,.035);padding-left:16px}
+.met-row:hover .met-no{color:var(--yellow);-webkit-text-stroke:0px transparent}
+.met-row:hover .met-arr{opacity:1;transform:none}
+
+.met-media{position:sticky;top:96px;display:grid;grid-template-columns:1fr;gap:16px}
+.met-video{position:relative;border-radius:20px;overflow:hidden;max-width:340px}
+.met-video video{width:100%;aspect-ratio:624/872;object-fit:cover}
+.met-video figcaption{
+  position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:9px;
+  padding:14px 16px;font-size:12.5px;color:rgba(244,245,242,.92);
+  background:linear-gradient(0deg,rgba(8,9,11,.85),rgba(8,9,11,0));
+}
+.rec{width:9px;height:9px;border-radius:50%;background:#FF4B33;flex:none;animation:blink 1.4s ease-in-out infinite}
+.met-photo{position:relative;border-radius:20px;overflow:hidden;max-width:340px}
+.met-photo img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.met-photo figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:12px 16px;font-size:12.5px;
+  color:rgba(244,245,242,.92);background:linear-gradient(0deg,rgba(8,9,11,.85),rgba(8,9,11,0));
+}
+
+/* ---------- услуги ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.svc-card{
+  grid-column:span 2;background:var(--panel);border-radius:20px;padding:30px 28px 32px;
+  position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;
+}
+.svc-card:nth-child(4){grid-column:span 3}
+.svc-card:nth-child(5){grid-column:span 3}
+.svc-card::before{content:"";position:absolute;top:0;left:28px;width:34px;height:5px;background:var(--yellow)}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.svc-ico{width:34px;height:34px;color:var(--yellow);margin-bottom:18px}
+.svc-card h3{font:600 20px/1.25 "Geologica",sans-serif}
+.svc-card p{margin-top:9px;font-size:14.5px;color:var(--mut)}
+
+/* ---------- CAD ---------- */
+.sec-cad{
+  background:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px),
+    var(--bg2);
+  background-size:44px 44px,44px 44px,auto;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.cad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cad-card{position:relative;border-radius:20px;overflow:hidden;background:#fff;aspect-ratio:4/3.4}
+.cad-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;padding:0}
+.cad-3d{background:#fff}
+.cad-real{opacity:0;transition:opacity .9s ease}
+.cad-card:hover .cad-real,.cad-card.show-real .cad-real{opacity:1}
+.cad-card h3{
+  position:absolute;left:18px;bottom:16px;z-index:2;
+  font:700 17px/1 "Geologica",sans-serif;color:var(--ink);
+  background:rgba(8,9,11,.82);padding:11px 15px;border-radius:11px;
+}
+.cad-tags{position:absolute;top:14px;left:14px;z-index:2;display:flex;gap:6px}
+.cad-tags span{
+  font:700 11px/1 "Geologica",sans-serif;letter-spacing:.05em;
+  padding:7px 11px;border-radius:99px;transition:background .5s,color .5s;
+  background:rgba(8,9,11,.62);color:rgba(244,245,242,.75);
+}
+.cad-card .tag-3d{background:var(--yellow);color:var(--black)}
+.cad-card:hover .tag-3d,.cad-card.show-real .tag-3d{background:rgba(8,9,11,.62);color:rgba(244,245,242,.75)}
+.cad-card:hover .tag-real,.cad-card.show-real .tag-real{background:var(--yellow);color:var(--black)}
+
+/* ---------- работы ---------- */
+.w-nav{display:flex;gap:10px;flex:none}
+.w-btn{
+  width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);
+  background:transparent;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .3s,border-color .3s,color .3s;
+}
+.w-btn svg{width:22px;height:22px}
+.w-btn:hover{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
+.works-wrap{overflow:hidden}
+.works-track{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:6px max(28px,calc((100vw - 1280px)/2 + 28px)) 14px;
+  scroll-padding-inline:max(28px,calc((100vw - 1280px)/2 + 28px));
+  scrollbar-width:none;cursor:grab;
+}
+.works-track::-webkit-scrollbar{display:none}
+.works-track.dragging{cursor:grabbing;scroll-snap-type:none}
+.w-item{flex:0 0 305px;scroll-snap-align:start}
+.w-item img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:18px;pointer-events:none}
+.w-item figcaption{margin-top:11px;font:600 13.5px/1.4 "Geologica",sans-serif;color:var(--mut)}
+
+/* ---------- почему ---------- */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 56px}
+.y-row{display:flex;gap:22px;align-items:center;padding:20px 0;border-top:1px solid var(--line)}
+.y-no{font:800 40px/1 "Geologica",sans-serif;color:transparent;-webkit-text-stroke:1.3px var(--yellow);flex:none}
+.y-row p{font:500 clamp(16px,1.5vw,19px)/1.4 "Geologica",sans-serif}
+.y-cta{justify-content:flex-start}
+
+/* ---------- форма ---------- */
+.sec-form{padding-top:96px}
+.form-panel{
+  position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;
+  background:
+    linear-gradient(rgba(255,255,255,.024) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px),
+    var(--panel);
+  background-size:44px 44px,44px 44px,auto;
+  border-radius:26px;padding:56px;overflow:hidden;
+}
+.form-panel::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--black) 18px 36px)}
+.form-side .sec-no{font-size:56px}
+.form-side h2{font:700 clamp(26px,3vw,38px)/1.15 "Geologica",sans-serif;text-transform:uppercase}
+.form-side h2::after{content:"";display:block;width:64px;height:5px;background:var(--yellow);margin-top:16px}
+.form-direct{margin-top:40px}
+.fd-lab{font-size:14px;color:var(--mut);margin-bottom:14px}
+.fd-link{
+  display:flex;align-items:center;gap:12px;font:600 16px/1.3 "Geologica",sans-serif;
+  padding:13px 0;color:var(--ink);transition:color .25s;word-break:break-all;
+}
+.fd-link svg{width:22px;height:22px;color:var(--yellow);flex:none}
+.fd-link:hover{color:var(--yellow)}
+
+.form{display:flex;flex-direction:column;gap:18px}
+.f-field{display:flex;flex-direction:column;gap:8px}
+.f-field>span{font:600 13px/1 "Geologica",sans-serif;letter-spacing:.05em;color:var(--mut);text-transform:uppercase}
+.f-field input,.f-field select,.f-field textarea{
+  background:#0E1116;border:1px solid var(--line);border-radius:13px;
+  padding:15px 16px;font:500 15.5px/1.4 "Onest",sans-serif;color:var(--ink);
+  outline:none;transition:border-color .25s,box-shadow .25s;width:100%;
+}
+.f-field textarea{resize:vertical;min-height:96px}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,196,0,.14)}
+.f-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%239AA3AD' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.f-send{margin-top:6px}
+.f-note{font-size:13px;color:var(--mut);line-height:1.5}
+.thanks{grid-column:1/-1;text-align:center;padding:40px 20px 30px}
+.thanks svg{width:76px;height:76px;margin:0 auto 24px}
+.thanks h3{font:700 26px/1.2 "Geologica",sans-serif}
+.thanks p{margin:12px auto 26px;color:var(--mut);max-width:560px}
+
+/* ---------- контакты ---------- */
+.ct-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:20px;align-items:stretch}
+.ct-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+.ct-cards .ct-card:nth-child(3){grid-column:span 2}
+.ct-card{
+  background:var(--panel);border-radius:18px;padding:22px 22px 24px;
+  display:flex;flex-direction:column;gap:9px;transition:transform .3s,box-shadow .3s;
+}
+a.ct-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4),0 0 0 1.5px var(--yellow)}
+.ct-lab{font:700 11.5px/1 "Geologica",sans-serif;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase}
+.ct-val{font:600 15.5px/1.4 "Geologica",sans-serif;word-break:break-word}
+.ct-off .btn{justify-content:flex-start;padding:13px 16px;font-size:14px}
+.ct-off .btn svg{width:19px;height:19px}
+.soon{display:block;font:400 12.5px/1.4 "Onest",sans-serif;font-style:normal;color:#6E7681}
+.ct-map{position:relative;border-radius:20px;overflow:hidden;min-height:380px;background:var(--panel)}
+.ct-map iframe{width:100%;height:100%;min-height:380px;border:0;filter:grayscale(.9) contrast(1.04) brightness(.92)}
+.map-pin{
+  position:absolute;left:18px;bottom:18px;display:flex;align-items:center;gap:9px;
+  background:rgba(8,9,11,.85);border-radius:12px;padding:11px 16px;
+  font:700 13.5px/1 "Geologica",sans-serif;color:var(--ink);
+}
+.map-pin::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--yellow)}
+
+/* ---------- футер ---------- */
+.foot{background:var(--black)}
+.foot-in{display:grid;grid-template-columns:auto 1fr auto;gap:14px 40px;align-items:center;padding-top:38px;padding-bottom:40px}
+.foot-tag{color:var(--mut);font-size:14px}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font:600 14px/1 "Geologica",sans-serif;color:var(--mut);transition:color .25s}
+.foot-links a:hover{color:var(--yellow)}
+.foot-c{grid-column:1/-1;color:#5A626B;font-size:13px;border-top:1px solid rgba(255,255,255,.07);padding-top:20px}
+
+/* ---------- мобильная панель ---------- */
+.mbar{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:110;
+  background:rgba(10,12,15,.97);border-top:1px solid var(--line);
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;align-items:stretch;
+}
+.mb-i{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  background:transparent;border:0;border-radius:12px;color:var(--ink);padding:6px 2px;cursor:pointer;
+}
+.mb-i svg{width:21px;height:21px}
+.mb-i i{font:600 10px/1 "Onest",sans-serif;font-style:normal;color:var(--mut);letter-spacing:.02em}
+.mb-i.is-off{opacity:.38;cursor:not-allowed}
+.mb-btn{
+  flex:1.5;display:flex;align-items:center;justify-content:center;
+  background:var(--yellow);color:var(--black);border-radius:13px;
+  font:700 14.5px/1 "Geologica",sans-serif;
+}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ================= АДАПТИВ ================= */
+@media (max-width:1120px){
+  /* порог бургера = порог оверлея, считан по казахской навигации */
+  .nav{
+    position:fixed;inset:0;z-index:101;background:#0A0C10;
+    flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;
+    padding:110px 34px 40px;
+    opacity:0;visibility:hidden;transform:translateY(-14px);
+    transition:opacity .35s,transform .35s,visibility .35s;
+  }
+  body.menu-open .nav{opacity:1;visibility:visible;transform:none}
+  .nav>a{font:600 clamp(26px,6vw,34px)/1.25 "Geologica",sans-serif;color:var(--ink);padding:10px 0}
+  .nav>a::after{height:3px}
+  .nav-foot{display:flex;flex-direction:column;gap:12px;margin-top:auto;padding-bottom:10px}
+  body.menu-open .mbar{display:none}
+  .nf-link{font:500 15px/1.4 "Onest",sans-serif;color:var(--mut)}
+  .burger{display:flex}
+  body.menu-open{overflow:hidden}
+}
+@media (max-width:1024px){
+  .met-grid{grid-template-columns:1fr;gap:44px}
+  .met-media{position:static;grid-template-columns:1fr 1fr;max-width:none}
+  .met-video,.met-photo{max-width:none}
+  .met-photo img{aspect-ratio:auto;height:100%}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc-card,.svc-card:nth-child(4),.svc-card:nth-child(5){grid-column:span 1}
+  .form-panel{grid-template-columns:1fr;gap:40px;padding:44px}
+  .ct-grid{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .trust-grid{grid-template-columns:1fr 1fr;gap:26px 0}
+  .t-cell{padding:0 24px}
+  .t-cell:nth-child(3){border-left:0;padding-left:0}
+  .c-a,.c-b,.c-c,.c-d,.c-e,.c-f,.c-g,.c-h{grid-column:span 6;min-height:330px}
+  .cad-grid{grid-template-columns:1fr}
+  .cad-card{aspect-ratio:4/3}
+  .why-grid{grid-template-columns:1fr;gap:0}
+  .comp-grid{grid-template-columns:repeat(3,1fr)}
+  .sec{padding:78px 0 72px}
+  .btn-hdr{display:none}
+}
+@media (max-width:760px){
+  .mbar{display:flex}
+  body{padding-bottom:76px}
+  .hero-in{padding-bottom:80px}
+  .hero-hook{display:none}
+  .sec-head-row{flex-direction:column;align-items:flex-start}
+  .foot-in{grid-template-columns:1fr;align-items:flex-start;gap:18px}
+}
+@media (max-width:620px){
+  .wrap{padding:0 18px}
+  .mq{margin:44px -12px 4px}
+  .c-a,.c-b,.c-c,.c-d,.c-e,.c-f,.c-g,.c-h{grid-column:span 12;min-height:300px}
+  .c-g{min-height:400px}
+  .comp{padding:26px 20px 30px}
+  .comp-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .met-media{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .form-panel{padding:34px 22px}
+  .ct-cards{grid-template-columns:1fr}
+  .works-track{padding-left:18px;padding-right:18px}
+  .w-item{flex-basis:255px}
+  .t-num{font-size:34px}
+  .t-cell{padding:0 18px}
+  .lang button{padding:6px 10px}
+  .logo-txt b{font-size:15px;letter-spacing:.26em}
+  .logo-txt i{font-size:7.6px;letter-spacing:.36em}
+  .hdr-in{gap:10px}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal,.h1-a,.h1-b,.h1-c,.lead,.hero-cta{opacity:1;transform:none}
+}
