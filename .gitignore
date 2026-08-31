@@ -5,3 +5,4 @@ _deploy/
 .DS_Store
 *.log
 _shot/
+__*.html
