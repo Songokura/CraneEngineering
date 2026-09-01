@@ -181,11 +181,6 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
   background:linear-gradient(185deg,rgba(8,9,11,.06) 38%,rgba(8,9,11,.88) 82%);
   pointer-events:none;
 }
-.card-no{
-  position:absolute;top:16px;left:18px;z-index:2;
-  font:800 15px/1 "Geologica",sans-serif;color:var(--black);
-  background:var(--yellow);padding:7px 10px;border-radius:8px;
-}
 .card-live{
   position:absolute;top:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;
   font:600 11.5px/1 "Onest",sans-serif;letter-spacing:.04em;color:var(--ink);
