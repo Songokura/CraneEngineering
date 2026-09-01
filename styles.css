@@ -509,6 +509,7 @@ a.ct-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4)
 
 /* ---------- модальная карточка раздела ---------- */
 body.dt-open{overflow:hidden}
+.dt[hidden]{display:none}   /* иначе display:flex перебивает hidden и невидимый слой накрывает всю страницу */
 .dt{position:fixed;inset:0;z-index:130;display:flex;align-items:flex-start;justify-content:center;padding:4vh 16px}
 .dt-scrim{position:absolute;inset:0;background:rgba(6,7,9,.74);opacity:0;transition:opacity .26s}
 .dt-win{
