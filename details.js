@@ -379,7 +379,16 @@ const DL = {
   document.addEventListener('click', e => {
     const trig = e.target.closest('[data-detail]');
     if (trig) { e.preventDefault(); open(trig.getAttribute('data-detail'), trig); return; }
-    if (e.target.closest('[data-dt-cta]')) { close(); return; }
+    const cta = e.target.closest('[data-dt-cta]');
+    if (cta) {
+      // тот же пресет продукта, что и у карточек: разделы металлообработки уходят в «Металлообработка»
+      const sel = document.getElementById('whatSelect');
+      if (sel) {
+        const k = cta.getAttribute('data-product');
+        sel.value = [...sel.options].some(o => o.value === k) ? k : 'metal';
+      }
+      close(); return;
+    }
     if (e.target.closest('.dt-close') || e.target.classList.contains('dt-scrim')) { e.preventDefault(); close(); }
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && openKey) close(); });
