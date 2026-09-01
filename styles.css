@@ -493,3 +493,124 @@ a.ct-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4)
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .reveal,.h1-a,.h1-b,.h1-c,.lead,.hero-cta{opacity:1;transform:none}
 }
+
+/* ---------- кнопка «Подробнее» на карточках каталога ---------- */
+.card-acts{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:15px}
+.card-acts .card-cta{margin-top:0}
+.card-more{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.03);color:var(--ink);
+  font:600 13px/1 "Geologica","Segoe UI",sans-serif;letter-spacing:.02em;cursor:pointer;
+  transition:border-color .25s,color .25s,background .25s;
+}
+.card-more::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--yellow);transition:transform .25s}
+.card-more:hover{border-color:var(--yellow);color:var(--yellow);background:rgba(255,196,0,.07)}
+.card-more:hover::before{transform:scale(1.6)}
+
+/* ---------- модальная карточка раздела ---------- */
+body.dt-open{overflow:hidden}
+.dt{position:fixed;inset:0;z-index:130;display:flex;align-items:flex-start;justify-content:center;padding:4vh 16px}
+.dt-scrim{position:absolute;inset:0;background:rgba(6,7,9,.74);opacity:0;transition:opacity .26s}
+.dt-win{
+  position:relative;display:flex;flex-direction:column;width:min(1060px,100%);max-height:92vh;
+  background:var(--bg2);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.62),0 0 0 1px var(--line);
+  opacity:0;transform:translateY(28px) scale(.985);
+  transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .34s cubic-bezier(.16,1,.3,1);
+}
+.dt-win::before{content:"";position:absolute;top:0;left:0;right:0;height:78px;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,var(--bg2) 26%,rgba(16,19,24,0));opacity:0;transition:opacity .25s}
+.dt.is-scr .dt-win::before{opacity:1}
+.dt.is-on .dt-scrim{opacity:1}
+.dt.is-on .dt-win{opacity:1;transform:none}
+.dt-body{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.dt-close{
+  position:absolute;top:14px;right:14px;z-index:4;width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;color:var(--ink);
+  border:1px solid rgba(255,255,255,.18);background:rgba(10,12,15,.72);backdrop-filter:blur(8px);
+  transition:background .25s,color .25s,transform .25s;
+}
+.dt-close svg{width:20px;height:20px}
+.dt-close:hover{background:var(--yellow);color:var(--black);transform:rotate(90deg)}
+
+.dt-hero{position:relative;aspect-ratio:21/8;max-height:340px;overflow:hidden}
+.dt-hero img{width:100%;height:100%;object-fit:cover}
+.dt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg2) 2%,rgba(16,19,24,.25) 55%,rgba(16,19,24,.5))}
+.dt-in{padding:clamp(20px,3vw,36px) clamp(18px,3vw,40px) clamp(28px,4vw,44px);position:relative;z-index:2}
+.dt-hero + .dt-in{margin-top:-56px}
+.dt-t{font:700 clamp(24px,3.4vw,40px)/1.1 "Geologica","Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+.dt-lead{margin-top:12px;font-size:clamp(15px,1.5vw,17.5px);line-height:1.55;color:rgba(244,245,242,.82)}
+.dt-h{
+  margin:34px 0 16px;padding-left:14px;position:relative;
+  font:700 13px/1 "Geologica","Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);
+}
+.dt-h::before{content:"";position:absolute;left:0;top:-1px;width:4px;height:14px;background:var(--yellow);border-radius:2px}
+
+/* виды и исполнения */
+.dt-vars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.dt-var{background:var(--panel);border-radius:16px;padding:16px 16px 18px;border:1px solid var(--line);transition:border-color .25s,transform .3s}
+.dt-var:hover{border-color:rgba(255,196,0,.4);transform:translateY(-3px)}
+.dt-var h5{margin-top:12px;font:600 15px/1.25 "Geologica","Segoe UI",sans-serif}
+.dt-var p{margin-top:5px;font-size:13.5px;line-height:1.45;color:var(--mut)}
+.dt-sch{background:var(--bg);border-radius:12px;padding:10px}
+.dt-sch svg{display:block;width:100%;height:auto}
+.dt-vimg{border-radius:12px;overflow:hidden;aspect-ratio:12/7}
+.dt-vimg img{width:100%;height:100%;object-fit:cover}
+/* схемы: жёлтая несущая, стальная обвязка */
+.s-beam{fill:var(--yellow)}
+.s-steel-f{fill:#A7B0BA}
+.s-steel{fill:none;stroke:#A7B0BA;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.s-rail{fill:none;stroke:rgba(255,255,255,.34);stroke-width:3;stroke-linecap:round}
+.s-line{fill:none;stroke:#C9D1D9;stroke-width:2;stroke-linecap:round}
+.s-hook{fill:none;stroke:var(--yellow);stroke-width:2.4;stroke-linecap:round}
+.s-chain{fill:none;stroke:rgba(255,255,255,.45);stroke-width:2;stroke-dasharray:3 3}
+
+/* параметры */
+.dt-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 34px}
+.dt-specs > div{display:flex;align-items:baseline;gap:10px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.dt-specs dt{font-size:14px;color:var(--mut);white-space:nowrap}
+.dt-specs > div::after{content:"";flex:1;order:2;border-bottom:1px dotted rgba(255,255,255,.16);transform:translateY(-4px)}
+.dt-specs dd{order:3;max-width:62%;font:600 14.5px/1.35 "Geologica","Segoe UI",sans-serif;text-align:right}
+
+/* видео */
+.dt-video{position:relative;border-radius:18px;overflow:hidden;max-width:360px;background:var(--panel)}
+.dt-video video{display:block;width:100%;aspect-ratio:624/872;object-fit:cover}
+.dt-video figcaption{
+  position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:9px;
+  padding:14px 16px;font-size:12.5px;color:rgba(244,245,242,.92);
+  background:linear-gradient(0deg,rgba(8,9,11,.85),rgba(8,9,11,0));
+}
+.dt-soon{
+  display:flex;align-items:center;gap:11px;padding:16px 18px;border-radius:14px;
+  background:var(--panel);border:1px dashed rgba(255,255,255,.16);font-size:14px;color:var(--mut);
+}
+.dt-soon-ic{width:9px;height:9px;border-radius:50%;background:var(--yellow);flex:none;box-shadow:0 0 0 5px rgba(255,196,0,.14)}
+
+/* фотографии */
+.dt-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.dt-photos figure{border-radius:16px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.dt-photos img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.dt-photos figure:hover img{transform:scale(1.05)}
+.dt-photos figcaption{padding:11px 13px 13px;font-size:13px;line-height:1.35;color:var(--mut)}
+
+.dt-cta{margin-top:32px;padding-top:26px;border-top:1px solid var(--line)}
+
+@media (max-width:560px){
+  .dt-var{display:grid;grid-template-columns:118px 1fr;grid-template-rows:auto auto;
+    align-content:center;column-gap:14px;padding:14px}
+  .dt-sch,.dt-vimg{grid-row:1/3;align-self:center}
+  .dt-sch{padding:8px}
+  .dt-var h5{grid-column:2;align-self:end;margin-top:0}
+  .dt-var p{grid-column:2;align-self:start;margin-top:4px}
+}
+@media (max-width:760px){
+  .dt{padding:0}
+  .dt-win{width:100%;max-height:100vh;max-height:100svh;border-radius:0}
+  .dt-hero{aspect-ratio:16/9}
+  .dt-hero + .dt-in{margin-top:-38px}
+  .dt-specs dd{text-align:right}
+  .dt-video{max-width:none}
+  .dt-cta .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  .dt-win,.dt-scrim,.dt-var,.dt-photos img,.dt-close{transition:none}
+}

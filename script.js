@@ -22,7 +22,7 @@ const I18N = {
     'hero.kicker': 'АЛМАТЫ · ӨЗ ӨНДІРІСІМІЗ · БҮКІЛ ҚАЗАҚСТАН БОЙЫНША',
     'hero.h1a': 'ЖҮК КӨТЕРГІШ', 'hero.h1b': 'КРАНДАР', 'hero.h1c': '0,5-200 т',
     'hero.lead': 'Көпірлі, мосы және консольді крандар, кран-балкалар, тальдар мен грейферлер - сызбадан сынаққа дейін. Дайындау, монтаждау және тексеру - бүкіл Қазақстан бойынша.',
-    'cta.calc': 'Құнын есептеу', 'cta.short': 'Құнын есептеу', 'hero.btn2': 'Өнім каталогы',
+    'cta.calc': 'Құнын есептеу', 'cta.short': 'Құнын есептеу', 'cta.more': 'Толығырақ', 'hero.btn2': 'Өнім каталогы',
     'trust.l1': 'жыл кран жасаудағы инженерлік тәжірибе',
     'trust.u2': ' т', 'trust.l2': 'макс. жүк көтергіштік, 0,5 т-дан бастап',
     'trust.b3': '3D', 'trust.l3': 'тораптардың жобасын өзіміз жасаймыз',
@@ -53,6 +53,7 @@ const I18N = {
     'm4.t': 'Металл ию', 'm4.d': 'парақ пен профильді қажет пішінге келтіру',
     'm5.t': 'Дәнекерлеу жұмыстары', 'm5.d': 'көтергіш металл конструкциялар мен тораптар',
     'm6.t': 'Сызба бойынша бөлшектер', 'm6.d': 'жеке және сериялық партиялар',
+    'm7.t': 'Малярлық жұмыстар', 'm7.d': 'құмағын, грунт, RAL бойынша эмаль',
     'met.vcap': 'Траверса дәнекерлеу - өз цехымыздан кадр',
     'met.pcap': 'Кран дөңгелегін жону',
     'svc.h2': 'Инжиниринг және сервис',
@@ -111,7 +112,7 @@ const I18N = {
     'hero.kicker': 'ALMATY · IN-HOUSE PRODUCTION · ALL OVER KAZAKHSTAN',
     'hero.h1a': 'OVERHEAD AND GANTRY', 'hero.h1b': 'CRANES', 'hero.h1c': '0.5-200 t',
     'hero.lead': 'Overhead, gantry and jib cranes, hoists and grabs - from drawing to load tests. Manufacturing, installation and inspection across Kazakhstan.',
-    'cta.calc': 'Get a quote', 'cta.short': 'Get a quote', 'hero.btn2': 'Product catalog',
+    'cta.calc': 'Get a quote', 'cta.short': 'Get a quote', 'cta.more': 'More details', 'hero.btn2': 'Product catalog',
     'trust.l1': 'years of crane engineering experience',
     'trust.u2': ' t', 'trust.l2': 'max lifting capacity, starting from 0.5 t',
     'trust.b3': '3D', 'trust.l3': 'every unit designed in CAD by our team',
@@ -142,6 +143,7 @@ const I18N = {
     'm4.t': 'Bending', 'm4.d': 'sheet and profile shaped to spec',
     'm5.t': 'Welding', 'm5.d': 'load bearing structures and assemblies',
     'm6.t': 'Parts to drawings', 'm6.d': 'one off and batch production',
+    'm7.t': 'Painting', 'm7.d': 'blasting, primer, RAL enamel',
     'met.vcap': 'Welding a lifting beam - our shop, unstaged',
     'met.pcap': 'Machining a crane wheel',
     'svc.h2': 'Engineering and service',
@@ -235,6 +237,7 @@ function setLang(l){
     b.setAttribute('aria-pressed', on ? 'true' : 'false');
   });
   try{ localStorage.setItem('ce-lang', l); }catch(e){}
+  window.dispatchEvent(new Event('lang-change'));
 }
 
 document.querySelectorAll('.lang button').forEach(function(b){
