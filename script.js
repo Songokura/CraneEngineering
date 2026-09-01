@@ -346,13 +346,42 @@ if(!RM){
 /* ---------- галерея работ ---------- */
 const track = document.getElementById('wTrack');
 if(track){
+  const wPrev = document.getElementById('wPrev'), wNext = document.getElementById('wNext');
   const step = function(){ return Math.min(track.clientWidth * .8, 660); };
-  document.getElementById('wPrev').addEventListener('click', function(){
-    track.scrollBy({left:-step(), behavior: RM ? 'auto' : 'smooth'});
-  });
-  document.getElementById('wNext').addEventListener('click', function(){
-    track.scrollBy({left:step(), behavior: RM ? 'auto' : 'smooth'});
-  });
+  const maxScroll = function(){ return track.scrollWidth - track.clientWidth; };
+
+  // своя анимация: нативный scrollBy со smooth не едет, пока на треке scroll-snap mandatory
+  let anim = 0;
+  function slide(delta){
+    const from = track.scrollLeft;
+    const to = Math.max(0, Math.min(maxScroll(), from + delta));
+    if(to === from) return;
+    cancelAnimationFrame(anim);
+    if(RM){ track.scrollLeft = to; updateArrows(); return; }
+    const t0 = performance.now(), dur = 420;
+    track.classList.add('sliding');           // снимаем snap, иначе он тянет назад
+    (function frame(t){
+      const p = Math.min(1, (t - t0) / dur);
+      const e = p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;
+      track.scrollLeft = from + (to - from) * e;
+      if(p < 1) anim = requestAnimationFrame(frame);
+      else { track.classList.remove('sliding'); updateArrows(); }
+    })(t0);
+  }
+
+  // край помечаем классом, а не disabled: если замер соврёт, кнопка всё равно живая
+  function updateArrows(){
+    const m = maxScroll();
+    wPrev.classList.toggle('is-off', track.scrollLeft <= 1);
+    wNext.classList.toggle('is-off', track.scrollLeft >= m - 1);
+  }
+  track.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+  window.addEventListener('load', updateArrows);
+  updateArrows();
+
+  wPrev.addEventListener('click', function(){ slide(-step()); });
+  wNext.addEventListener('click', function(){ slide(step()); });
   let down = false, sx = 0, sl = 0, moved = false;
   track.addEventListener('pointerdown', function(e){
     if(e.pointerType !== 'mouse') return;
@@ -364,10 +393,10 @@ if(track){
     if(Math.abs(dx) > 4){ moved = true; track.classList.add('dragging'); }
     track.scrollLeft = sl - dx;
   });
-  window.addEventListener('pointerup', function(){
-    down = false;
-    track.classList.remove('dragging');
-  });
+  function endDrag(){ down = false; track.classList.remove('dragging'); }
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+  window.addEventListener('blur', endDrag);
   track.addEventListener('click', function(e){ if(moved) e.preventDefault(); }, true);
 }
 

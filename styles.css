@@ -614,3 +614,7 @@ body.dt-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .dt-win,.dt-scrim,.dt-var,.dt-photos img,.dt-close{transition:none}
 }
+
+/* ---------- галерея работ: своя анимация прокрутки ---------- */
+.works-track.sliding{scroll-snap-type:none}
+.w-btn.is-off{opacity:.34}
