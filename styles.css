@@ -210,7 +210,7 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 .comp::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 14px,transparent 14px 28px)}
 .comp-head h3{font:700 clamp(22px,2.6vw,30px)/1.15 "Geologica",sans-serif;text-transform:uppercase}
 .comp-head p{margin-top:8px;color:var(--mut);font-size:15px}
-.comp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:28px}
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
 .comp-item{display:flex;flex-direction:column;gap:10px;border-radius:14px}
 .comp-item img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .35s}
 .comp-item:hover img{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.5),0 0 0 1.5px var(--yellow)}
@@ -365,7 +365,13 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
 /* ---------- контакты ---------- */
 .ct-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:20px;align-items:stretch}
 .ct-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
-.ct-cards .ct-card:nth-child(3){grid-column:span 2}
+/* QR Instagram: подпись слева, код справа - карточка на всю ширину колонки контактов */
+.ct-cards .ct-qr{grid-column:span 2;flex-direction:row;align-items:center;justify-content:space-between;gap:18px}
+.ct-qr-txt{display:flex;flex-direction:column;gap:9px}
+.ct-qr-hint{font:400 12.5px/1.4 "Onest",sans-serif;font-style:normal;color:#6E7681}
+.ct-qr-img{width:150px;height:auto;flex:0 0 auto;border-radius:12px;background:#fff;padding:8px;
+  transition:transform .35s cubic-bezier(.16,1,.3,1)}
+a.ct-qr:hover .ct-qr-img{transform:scale(1.06)}
 .ct-card{
   background:var(--panel);border-radius:18px;padding:22px 22px 24px;
   display:flex;flex-direction:column;gap:9px;transition:transform .3s,box-shadow .3s;
@@ -454,7 +460,7 @@ a.ct-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4)
   .cad-grid{grid-template-columns:1fr}
   .cad-card{aspect-ratio:4/3}
   .why-grid{grid-template-columns:1fr;gap:0}
-  .comp-grid{grid-template-columns:repeat(3,1fr)}
+  .comp-grid{grid-template-columns:repeat(4,1fr)}
   .sec{padding:78px 0 72px}
   .btn-hdr{display:none}
 }
@@ -479,6 +485,8 @@ a.ct-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4)
   .svc-grid{grid-template-columns:1fr}
   .form-panel{padding:34px 22px}
   .ct-cards{grid-template-columns:1fr}
+  .ct-cards .ct-qr{grid-column:span 1}
+  .ct-qr-img{width:120px}
   .works-track{padding-left:18px;padding-right:18px}
   .w-item{flex-basis:255px}
   .t-num{font-size:34px}
