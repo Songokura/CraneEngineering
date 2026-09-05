@@ -14,14 +14,14 @@
 <meta property="og:url" content="https://songokura.github.io/CraneEngineering/">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.ico?v=20260905-1" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=20260905-1">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png?v=20260905-1">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=20260905-1">
+<link rel="icon" href="favicon.ico?v=20260905-2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=20260905-2">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png?v=20260905-2">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=20260905-2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260905-1">
+<link rel="stylesheet" href="styles.css?v=20260905-2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,7 +45,7 @@
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
     <a class="logo" href="#top" aria-label="CRANE ENGINEERING - на главную">
-      <img class="logo-mark" src="assets/logo-mark.webp?v=20260905-1" width="480" height="250" alt="CRANE ENGINEERING - монограмма CE" decoding="async">
+      <img class="logo-mark" src="assets/logo-mark.webp?v=20260905-2" width="480" height="250" alt="CRANE ENGINEERING - монограмма CE" decoding="async">
       <span class="logo-txt"><b>CRANE</b><i>ENGINEERING</i></span>
     </a>
     <nav class="nav" id="nav" aria-label="Разделы сайта">
@@ -75,7 +75,10 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <img class="hero-bg" src="assets/hero-crane-hall.webp" alt="Мостовой кран в пролёте производственного цеха, крюковая обойма на подвесе" fetchpriority="high" decoding="async">
+  <picture>
+    <source media="(max-width:760px)" srcset="assets/hero-bridge-crane-m.webp?v=20260905-2">
+    <img class="hero-bg" src="assets/hero-bridge-crane.webp?v=20260905-2" alt="Двухбалочный мостовой кран CRANE ENGINEERING с площадкой обслуживания и крюковой обоймой" fetchpriority="high" decoding="async">
+  </picture>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <p class="kicker"><span class="tick" aria-hidden="true"></span><span data-i18n="hero.kicker">АЛМАТЫ · СОБСТВЕННОЕ ПРОИЗВОДСТВО · ПО ВСЕМУ КАЗАХСТАНУ</span></p>
@@ -325,6 +328,45 @@
   </div>
 </section>
 
+<!-- ================= ЦЕХ В РАБОТЕ ================= -->
+<section class="sec sec-shop" id="tsekh">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="sh.h2">Цех в работе</h2>
+      <p class="sec-lead" data-i18n="sh.lead">Снято на наших участках, без постановки и без стока. Нажмите на ролик - откроется раздел целиком.</p>
+    </div>
+  </div>
+  <div class="shop-wrap">
+    <div class="shop-track">
+      <button class="shop-card reveal" type="button" data-detail="welding">
+        <video data-src="assets/weld-shop.mp4" poster="assets/weld-shop-poster.webp" muted loop playsinline preload="none"></video>
+        <span class="shop-live" aria-hidden="true"><i></i></span>
+        <span class="shop-cap"><b data-i18n="sh.v1">Сварочный участок</b><em data-i18n="sh.m1">полуавтомат, аттестованные сварщики</em></span>
+      </button>
+      <button class="shop-card reveal" type="button" data-detail="turning">
+        <video data-src="assets/turning.mp4" poster="assets/turning-poster.webp" muted loop playsinline preload="none"></video>
+        <span class="shop-live" aria-hidden="true"><i></i></span>
+        <span class="shop-cap"><b data-i18n="sh.v2">Токарный участок</b><em data-i18n="sh.m2">валы, оси, барабаны, колёса</em></span>
+      </button>
+      <button class="shop-card reveal" type="button" data-detail="milling">
+        <video data-src="assets/machining.mp4" poster="assets/machining-poster.webp" muted loop playsinline preload="none"></video>
+        <span class="shop-live" aria-hidden="true"><i></i></span>
+        <span class="shop-cap"><b data-i18n="sh.v3">Фрезерная обработка</b><em data-i18n="sh.m3">зубофрезерный и расточной станки</em></span>
+      </button>
+      <button class="shop-card reveal" type="button" data-detail="plasma">
+        <video data-src="assets/plasma-cut.mp4" poster="assets/plasma-cut-poster.webp" muted loop playsinline preload="none"></video>
+        <span class="shop-live" aria-hidden="true"><i></i></span>
+        <span class="shop-cap"><b data-i18n="sh.v4">Плазменная и лазерная резка</b><em data-i18n="sh.m4">портальный станок с ЧПУ</em></span>
+      </button>
+      <button class="shop-card reveal" type="button" data-detail="painting">
+        <video data-src="assets/painting.mp4" poster="assets/painting-poster.webp" muted loop playsinline preload="none"></video>
+        <span class="shop-live" aria-hidden="true"><i></i></span>
+        <span class="shop-cap"><b data-i18n="sh.v5">Малярные работы</b><em data-i18n="sh.m5">окрасочная камера, эмаль по RAL</em></span>
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- ================= УСЛУГИ ================= -->
 <section class="sec" id="uslugi">
   <div class="wrap">
@@ -559,7 +601,7 @@
   <div class="hazard" aria-hidden="true"></div>
   <div class="wrap foot-in">
     <a class="logo" href="#top" aria-label="CRANE ENGINEERING - наверх">
-      <img class="logo-mark" src="assets/logo-mark.webp?v=20260905-1" width="480" height="250" alt="CRANE ENGINEERING - монограмма CE" decoding="async">
+      <img class="logo-mark" src="assets/logo-mark.webp?v=20260905-2" width="480" height="250" alt="CRANE ENGINEERING - монограмма CE" decoding="async">
       <span class="logo-txt"><b>CRANE</b><i>ENGINEERING</i></span>
     </a>
     <p class="foot-tag" data-i18n="ft.tag">Краны и грузоподъёмное оборудование · Алматы</p>
@@ -604,7 +646,7 @@
   </div>
 </div>
 
-<script src="script.js?v=20260905-1"></script>
-<script src="details.js?v=20260905-1"></script>
+<script src="script.js?v=20260905-2"></script>
+<script src="details.js?v=20260905-2"></script>
 </body>
 </html>

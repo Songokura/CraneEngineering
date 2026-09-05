@@ -68,6 +68,13 @@ const I18N = {
     'cad.lead': 'Әр торап алдымен CAD-модельде, содан кейін цехта құрастырылады. Карточкаға меңзеңіз.',
     'cad.tag3d': '3D-модель', 'cad.tagreal': 'металда',
     'cad.i1': 'Жүкшығыр', 'cad.i2': 'Редуктор', 'cad.i3': 'Кран арбашасы',
+    'sh.h2': 'Жұмыстағы цех',
+    'sh.lead': 'Өз учаскелерімізде түсірілген, қойылымсыз және стоксыз. Роликті басыңыз - бөлім толық ашылады.',
+    'sh.v1': 'Дәнекерлеу учаскесі', 'sh.m1': 'жартылай автомат, аттестатталған дәнекерлеушілер',
+    'sh.v2': 'Токарлық учаске', 'sh.m2': 'біліктер, осьтер, барабандар, дөңгелектер',
+    'sh.v3': 'Фрезерлік өңдеу', 'sh.m3': 'тіс фрезерлеу және кескіштеу станоктары',
+    'sh.v4': 'Плазмалық және лазерлік кесу', 'sh.m4': 'ЧПУ порталды станок',
+    'sh.v5': 'Малярлық жұмыстар', 'sh.m5': 'бояу камерасы, RAL бойынша эмаль',
     'works.h2': 'Орындалған жұмыстар',
     'works.lead': 'Өз өндірісіміздің нақты нысандары мен бұйымдары - сток фото жоқ.',
     'w1': 'Екі арқалықты көпірлі кран', 'w2': 'Екі арқалықты мосы кран',
@@ -163,6 +170,13 @@ const I18N = {
     'cad.lead': 'Every unit is assembled in a CAD model first, then in the shop. Hover a card.',
     'cad.tag3d': '3D model', 'cad.tagreal': 'in steel',
     'cad.i1': 'Winch', 'cad.i2': 'Gearbox', 'cad.i3': 'Crane trolley',
+    'sh.h2': 'The shop at work',
+    'sh.lead': 'Filmed at our own sections - unstaged, no stock footage. Tap a clip to open the full section.',
+    'sh.v1': 'Welding area', 'sh.m1': 'semi-automatic welding, certified welders',
+    'sh.v2': 'Turning area', 'sh.m2': 'shafts, axles, drums, wheels',
+    'sh.v3': 'Milling', 'sh.m3': 'gear-cutting and boring machines',
+    'sh.v4': 'Plasma and laser cutting', 'sh.m4': 'CNC gantry machine',
+    'sh.v5': 'Painting', 'sh.m5': 'paint booth, RAL enamel',
     'works.h2': 'Our work',
     'works.lead': 'Real projects and products of our own making, no stock photos.',
     'w1': 'Double-girder overhead crane', 'w2': 'Double-girder gantry crane',
@@ -336,6 +350,29 @@ if(RM){
     io.observe(el);
   });
 }
+
+/* ---------- цех в работе: ролики грузим и играем только когда карточка видна ---------- */
+(function(){
+  const cards = document.querySelectorAll('.shop-card video');
+  if(!cards.length) return;
+  if(RM){                                   // при «уменьшить движение» - только постеры
+    cards.forEach(function(v){ v.setAttribute('controls',''); v.src = v.dataset.src; });
+    return;
+  }
+  const vio = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      const v = en.target;
+      if(en.isIntersecting){
+        if(!v.src) v.src = v.dataset.src;   // байты качаем только по факту показа
+        const pr = v.play();
+        if(pr && pr.catch) pr.catch(function(){});
+      }else if(!v.paused){
+        v.pause();
+      }
+    });
+  }, {threshold:.45});
+  cards.forEach(function(v){ vio.observe(v); });
+})();
 
 /* ---------- интро hero ---------- */
 window.addEventListener('load', function(){
