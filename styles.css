@@ -182,12 +182,6 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45
   background:linear-gradient(185deg,rgba(8,9,11,.06) 38%,rgba(8,9,11,.88) 82%);
   pointer-events:none;
 }
-.card-live{
-  position:absolute;top:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;
-  font:600 11.5px/1 "Onest",sans-serif;letter-spacing:.04em;color:var(--ink);
-  background:rgba(8,9,11,.68);padding:8px 12px;border-radius:99px;
-}
-.card-live i{width:8px;height:8px;border-radius:50%;background:#FF4B33;animation:blink 1.4s ease-in-out infinite}
 @keyframes blink{50%{opacity:.25}}
 .card-body{position:relative;z-index:2;width:100%;padding:24px 24px 22px}
 .card-body h3{font:700 clamp(20px,2vw,26px)/1.15 "Geologica",sans-serif}
@@ -598,19 +592,8 @@ body.dt-open{overflow:hidden}
 .dt-var:hover{border-color:rgba(255,196,0,.4);transform:translateY(-3px)}
 .dt-var h5{margin-top:12px;font:600 15px/1.25 "Geologica","Segoe UI",sans-serif}
 .dt-var p{margin-top:5px;font-size:13.5px;line-height:1.45;color:var(--mut)}
-.dt-sch{background:var(--bg);border-radius:12px;padding:10px}
-.dt-sch svg{display:block;width:100%;height:auto}
 .dt-vimg{border-radius:12px;overflow:hidden;aspect-ratio:12/7}
 .dt-vimg img{width:100%;height:100%;object-fit:cover}
-/* схемы: жёлтая несущая, стальная обвязка */
-.s-beam{fill:var(--yellow)}
-.s-steel-f{fill:#A7B0BA}
-.s-steel{fill:none;stroke:#A7B0BA;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.s-rail{fill:none;stroke:rgba(255,255,255,.34);stroke-width:3;stroke-linecap:round}
-.s-line{fill:none;stroke:#C9D1D9;stroke-width:2;stroke-linecap:round}
-.s-hook{fill:none;stroke:var(--yellow);stroke-width:2.4;stroke-linecap:round}
-.s-chain{fill:none;stroke:rgba(255,255,255,.45);stroke-width:2;stroke-dasharray:3 3}
-
 /* параметры */
 .dt-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 34px}
 .dt-specs > div{display:flex;align-items:baseline;gap:10px;padding:12px 2px;border-bottom:1px solid var(--line)}
@@ -644,8 +627,7 @@ body.dt-open{overflow:hidden}
 @media (max-width:560px){
   .dt-var{display:grid;grid-template-columns:118px 1fr;grid-template-rows:auto auto;
     align-content:center;column-gap:14px;padding:14px}
-  .dt-sch,.dt-vimg{grid-row:1/3;align-self:center}
-  .dt-sch{padding:8px}
+  .dt-vimg{grid-row:1/3;align-self:center}
   .dt-var h5{grid-column:2;align-self:end;margin-top:0}
   .dt-var p{grid-column:2;align-self:start;margin-top:4px}
 }

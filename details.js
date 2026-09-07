@@ -1,28 +1,6 @@
 /* CRANE ENGINEERING - разделы каталога и металлообработки (модальные карточки) */
 'use strict';
 
-/* ---------- схемы исполнений (единый стиль: жёлтая несущая, стальная обвязка) ---------- */
-const SCH = {
-  // мостовые
-  bridgeSingle: '<svg viewBox="0 0 120 70"><path d="M8 14h104" class="s-rail"/><rect x="18" y="20" width="84" height="7" class="s-beam"/><path d="M18 20v-6h10v6M92 20v-6h10v6" class="s-steel"/><path d="M60 27v14" class="s-line"/><path d="M54 41h12v7H54z" class="s-steel-f"/><path d="M60 48v6" class="s-line"/><path d="M60 54a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  bridgeDouble: '<svg viewBox="0 0 120 70"><path d="M8 14h104" class="s-rail"/><rect x="18" y="19" width="84" height="6" class="s-beam"/><rect x="18" y="31" width="84" height="6" class="s-beam"/><path d="M18 19v-5h10v5M92 19v-5h10v5" class="s-steel"/><rect x="50" y="15" width="20" height="8" class="s-steel-f"/><path d="M60 37v8" class="s-line"/><path d="M54 45h12v7H54z" class="s-steel-f"/><path d="M60 52v4" class="s-line"/><path d="M60 56a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  bridgeSusp: '<svg viewBox="0 0 120 70"><path d="M8 10h104" class="s-rail"/><path d="M24 10v8M96 10v8" class="s-steel"/><rect x="18" y="18" width="84" height="7" class="s-beam"/><path d="M60 25v12" class="s-line"/><path d="M54 37h12v7H54z" class="s-steel-f"/><path d="M60 44v6" class="s-line"/><path d="M60 50a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  // козловые
-  gantryPlain: '<svg viewBox="0 0 120 70"><rect x="20" y="14" width="80" height="7" class="s-beam"/><path d="M26 21 20 58M94 21l6 37M8 58h104" class="s-steel"/><path d="M60 21v12" class="s-line"/><path d="M54 33h12v7H54z" class="s-steel-f"/><path d="M60 40v6" class="s-line"/><path d="M60 46a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  gantryOne: '<svg viewBox="0 0 120 70"><rect x="8" y="14" width="92" height="7" class="s-beam"/><path d="M34 21 28 58M94 21l6 37M8 58h104" class="s-steel"/><path d="M22 21v10" class="s-line"/><path d="M16 31h12v7H16z" class="s-steel-f"/><path d="M22 38v5" class="s-line"/><path d="M22 43a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  gantryTwo: '<svg viewBox="0 0 120 70"><rect x="6" y="14" width="108" height="7" class="s-beam"/><path d="M38 21 32 58M82 21l6 37M8 58h104" class="s-steel"/><path d="M60 21v12" class="s-line"/><path d="M54 33h12v7H54z" class="s-steel-f"/><path d="M60 40v6" class="s-line"/><path d="M60 46a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  gantryMini: '<svg viewBox="0 0 120 70"><rect x="34" y="20" width="52" height="6" class="s-beam"/><path d="M40 26 36 54M80 26l4 28" class="s-steel"/><circle cx="35" cy="57" r="4" class="s-steel"/><circle cx="85" cy="57" r="4" class="s-steel"/><path d="M60 26v10" class="s-line"/><path d="M55 36h10v6H55z" class="s-steel-f"/><path d="M60 42v5" class="s-line"/><path d="M60 47a3 3 0 1 0 3 3" class="s-hook"/></svg>',
-  // консольные
-  jibColumn: '<svg viewBox="0 0 120 70"><rect x="26" y="12" width="9" height="46" class="s-steel-f"/><rect x="30" y="14" width="66" height="6" class="s-beam"/><path d="M32 34 60 20" class="s-steel"/><path d="M84 20v12" class="s-line"/><path d="M79 32h10v6H79z" class="s-steel-f"/><path d="M84 38v6" class="s-line"/><path d="M84 44a4 4 0 1 0 4 4" class="s-hook"/><path d="M16 58h32" class="s-rail"/></svg>',
-  jibWall: '<svg viewBox="0 0 120 70"><path d="M18 8v54" class="s-rail"/><rect x="22" y="16" width="72" height="6" class="s-beam"/><path d="M22 40 52 22" class="s-steel"/><path d="M82 22v12" class="s-line"/><path d="M77 34h10v6H77z" class="s-steel-f"/><path d="M82 40v6" class="s-line"/><path d="M82 46a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  jibMobile: '<svg viewBox="0 0 120 70"><rect x="36" y="16" width="9" height="38" class="s-steel-f"/><rect x="40" y="18" width="52" height="6" class="s-beam"/><path d="M42 36 66 24" class="s-steel"/><path d="M82 24v10" class="s-line"/><path d="M77 34h10v6H77z" class="s-steel-f"/><path d="M82 40v5" class="s-line"/><path d="M82 45a4 4 0 1 0 4 4" class="s-hook"/><rect x="26" y="54" width="30" height="5" class="s-steel"/><circle cx="32" cy="62" r="4" class="s-steel"/><circle cx="50" cy="62" r="4" class="s-steel"/></svg>',
-  // кран-балки
-  beamSupport: '<svg viewBox="0 0 120 70"><path d="M10 18h100" class="s-rail"/><rect x="20" y="24" width="80" height="6" class="s-beam"/><path d="M20 24v-6h8v6M92 24v-6h8v6" class="s-steel"/><path d="M60 30v10" class="s-line"/><path d="M54 40h12v7H54z" class="s-steel-f"/><path d="M60 47v6" class="s-line"/><path d="M60 53a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  beamSusp: '<svg viewBox="0 0 120 70"><path d="M10 12h100" class="s-rail"/><path d="M28 12v8M92 12v8" class="s-steel"/><rect x="20" y="20" width="80" height="6" class="s-beam"/><path d="M60 26v12" class="s-line"/><path d="M54 38h12v7H54z" class="s-steel-f"/><path d="M60 45v6" class="s-line"/><path d="M60 51a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  beamManual: '<svg viewBox="0 0 120 70"><rect x="20" y="20" width="80" height="6" class="s-beam"/><path d="M20 20v-6h8v6M92 20v-6h8v6" class="s-steel"/><path d="M60 26v8" class="s-line"/><path d="M55 34h10v6H55z" class="s-steel-f"/><path d="M64 40v14" class="s-chain"/><path d="M60 40v6" class="s-line"/><path d="M60 46a4 4 0 1 0 4 4" class="s-hook"/></svg>',
-  beamDouble: '<svg viewBox="0 0 120 70"><path d="M10 18h100" class="s-rail"/><rect x="20" y="24" width="80" height="6" class="s-beam"/><path d="M20 24v-6h8v6M92 24v-6h8v6" class="s-steel"/><path d="M40 30v10M80 30v10" class="s-line"/><path d="M34 40h12v7H34zM74 40h12v7H74z" class="s-steel-f"/><path d="M40 47v5M80 47v5" class="s-line"/><path d="M40 52a3 3 0 1 0 3 3M80 52a3 3 0 1 0 3 3" class="s-hook"/></svg>'
-};
-
 /* ---------- данные разделов ---------- */
 const DETAILS = {
   /* ===== КРАНЫ ===== */
@@ -32,9 +10,9 @@ const DETAILS = {
     kk: { t: 'Көпірлі крандар', lead: 'Цехтың негізгі краны: аралықты толық жауып, астындағы бүкіл алаңда жұмыс істейді.' },
     en: { t: 'Overhead cranes', lead: 'The main crane of a workshop: spans the full bay and works across the whole area below.' },
     variants: [
-      { s: SCH.bridgeSingle, ru: ['Однобалочный опорный', 'до 20 т, ходит по подкрановым путям'], kk: ['Бір арқалықты тіреуішті', '20 т-ға дейін, кран асты жолымен жүреді'], en: ['Single-girder, top-running', 'up to 20 t, runs on runway rails'] },
-      { s: SCH.bridgeDouble, ru: ['Двухбалочный опорный', 'до 200 т, большая высота подъёма'], kk: ['Екі арқалықты тіреуішті', '200 т-ға дейін, көтеру биіктігі жоғары'], en: ['Double-girder, top-running', 'up to 200 t, greater lifting height'] },
-      { s: SCH.bridgeSusp, ru: ['Подвесной', 'крепится к фермам, экономит высоту'], kk: ['Аспалы', 'фермаға бекітіледі, биіктікті үнемдейді'], en: ['Underhung', 'fixed to roof trusses, saves headroom'] }
+      { p: 'assets/bridge-single-top.webp', ru: ['Однобалочный опорный', 'до 20 т, ходит по подкрановым путям'], kk: ['Бір арқалықты тіреуішті', '20 т-ға дейін, кран асты жолымен жүреді'], en: ['Single-girder, top-running', 'up to 20 t, runs on runway rails'] },
+      { p: 'assets/bridge-double-light.webp', ru: ['Двухбалочный опорный', 'до 200 т, большая высота подъёма'], kk: ['Екі арқалықты тіреуішті', '200 т-ға дейін, көтеру биіктігі жоғары'], en: ['Double-girder, top-running', 'up to 200 t, greater lifting height'] },
+      { p: 'assets/bridge-susp-yellow.webp', ru: ['Подвесной', 'крепится к фермам, экономит высоту'], kk: ['Аспалы', 'фермаға бекітіледі, биіктікті үнемдейді'], en: ['Underhung', 'fixed to roof trusses, saves headroom'] }
     ],
     specs: {
       ru: [['Грузоподъёмность', '0,5-200 т'], ['Пролёт', '4,5-34 м'], ['Высота подъёма', 'до 30 м'], ['Режим работы', 'А3-А6'], ['Управление', 'с пола, радио, из кабины']],
@@ -45,7 +23,7 @@ const DETAILS = {
       { src: 'assets/bridge-double-close.webp', ru: 'Двухбалочный опорный кран в пролёте', kk: 'Аралықтағы екі арқалықты тіреуішті кран', en: 'Double-girder top-running crane in the bay' },
       { src: 'assets/bridge-double-hall.webp', ru: 'Кран в новом производственном корпусе', kk: 'Жаңа өндірістік корпустағы кран', en: 'Crane in a new production building' },
       { src: 'assets/bridge-double-coils.webp', ru: 'Работа с рулонами металла', kk: 'Металл орамдарымен жұмыс', en: 'Handling steel coils' },
-      { src: 'assets/bridge-double-walkway.webp', ru: 'Площадка обслуживания вдоль моста', kk: 'Көпір бойындағы қызмет көрсету алаңы', en: 'Service walkway along the bridge' },
+      { src: 'assets/bridge-double-walkway.webp?v=20260907', ru: 'Площадка обслуживания вдоль моста', kk: 'Көпір бойындағы қызмет көрсету алаңы', en: 'Service walkway along the bridge' },
       { src: 'assets/bridge-single-top.webp', ru: 'Однобалочный опорный кран', kk: 'Бір арқалықты тіреуішті кран', en: 'Single-girder top-running crane' },
       { src: 'assets/bridge-double-light.webp', ru: 'Кран над сборочным участком', kk: 'Құрастыру учаскесінің үстіндегі кран', en: 'Crane over the assembly area' }
     ]
@@ -56,10 +34,10 @@ const DETAILS = {
     kk: { t: 'Мосы крандар', lead: 'Ғимарат жоқ жерде жұмыс істейді: ашық аспан астындағы қоймалар, полигондар, контейнер алаңдары.' },
     en: { t: 'Gantry cranes', lead: 'For sites without a building: open storage yards, laydown areas, container terminals.' },
     variants: [
-      { s: SCH.gantryPlain, ru: ['Бесконсольный', 'вся зона работы между опорами'], kk: ['Консольсіз', 'жұмыс аймағы толығымен тіректер арасында'], en: ['Without cantilevers', 'the whole work area sits between the legs'] },
-      { s: SCH.gantryOne, ru: ['Одноконсольный', 'вылет за опору с одной стороны'], kk: ['Бір консольді', 'бір жағында тіректен шығыңқы'], en: ['Single cantilever', 'reach beyond the leg on one side'] },
-      { s: SCH.gantryTwo, ru: ['Двухконсольный', 'вылет с обеих сторон, шире зона'], kk: ['Екі консольді', 'екі жағында да шығыңқы, аймақ кеңірек'], en: ['Double cantilever', 'reach on both sides, wider coverage'] },
-      { s: SCH.gantryMini, ru: ['Мини и передвижные', 'лёгкие, перевозятся между площадками'], kk: ['Шағын және жылжымалы', 'жеңіл, алаңдар арасында тасымалданады'], en: ['Mini and portable', 'light, moved between sites'] }
+      { p: 'assets/gantry-single.webp', ru: ['Однобалочный', 'до 20 т, консоль за опору'], kk: ['Бір арқалықты', '20 т дейін, тіректен шығыңқы консоль'], en: ['Single-girder', 'up to 20 t, cantilever past the leg'] },
+      { p: 'assets/var-gantry-double.webp', ru: ['Двухбалочный', 'до 50 т, большие пролёты и высота'], kk: ['Екі арқалықты', '50 т дейін, үлкен аралық пен биіктік'], en: ['Double-girder', 'up to 50 t, long spans and greater height'] },
+      { p: 'assets/semi-gantry.webp', ru: ['Полукозловой', 'одна опора на полу, вторая по стене'], kk: ['Жартылай мосы', 'бір тірегі еденде, екіншісі қабырғада'], en: ['Semi-gantry', 'one leg on the floor, the other on a wall rail'] },
+      { p: 'assets/crane-gantry-outdoor.webp', ru: ['Уличного исполнения', 'работа под открытым небом, до -40 °C'], kk: ['Далалық орындалуы', 'ашық аспан астында жұмыс, -40 °C дейін'], en: ['Outdoor version', 'works in the open, down to -40 °C'] }
     ],
     specs: {
       ru: [['Грузоподъёмность', '1-50 т'], ['Пролёт', '8-40 м'], ['Вылет консоли', 'до 8 м'], ['Высота подъёма', 'до 16 м'], ['Исполнение', 'уличное, до -40 °C']],
@@ -71,8 +49,7 @@ const DETAILS = {
       { src: 'assets/gantry-single.webp', ru: 'Однобалочный козловой кран на площадке', kk: 'Алаңдағы бір арқалықты мосы кран', en: 'Single-girder gantry crane on site' },
       { src: 'assets/semi-gantry.webp', ru: 'Полукозловой кран в цехе', kk: 'Цехтегі жартылай мосы кран', en: 'Semi-gantry crane in a workshop' },
       { src: 'assets/semi-gantry-low.webp', ru: 'Опора полукозлового крана', kk: 'Жартылай мосы кранның тірегі', en: 'Semi-gantry crane leg' },
-      { src: 'assets/crane-gantry-outdoor.webp', ru: 'Монтаж козлового крана на объекте', kk: 'Нысанда мосы кранды монтаждау', en: 'Gantry crane erection on site' },
-      { src: 'assets/crane-gantry-mobile.webp', ru: 'Передвижной мини-козловой кран', kk: 'Жылжымалы шағын мосы кран', en: 'Portable mini gantry crane' }
+      { src: 'assets/crane-gantry-outdoor.webp', ru: 'Монтаж козлового крана на объекте', kk: 'Нысанда мосы кранды монтаждау', en: 'Gantry crane erection on site' }
     ]
   },
   jib: {
@@ -81,9 +58,8 @@ const DETAILS = {
     kk: { t: 'Консольді крандар', lead: 'Бір жұмыс орнының краны: станок, дәнекерлеу посты, құрастыру учаскесі. Цехты қайта құрмай орнатылады.' },
     en: { t: 'Jib cranes', lead: 'A crane for one workstation: a machine, a welding bay, an assembly spot. Installed without rebuilding the shop.' },
     variants: [
-      { s: SCH.jibColumn, ru: ['На колонне', 'поворот 180° или 360°'], kk: ['Бағанада', '180° немесе 360° бұрылыс'], en: ['Column-mounted', '180° or 360° slew'] },
-      { s: SCH.jibWall, ru: ['Настенный', 'крепится к колонне здания'], kk: ['Қабырғалық', 'ғимарат бағанасына бекітіледі'], en: ['Wall-mounted', 'fixed to a building column'] },
-      { s: SCH.jibMobile, ru: ['Передвижной', 'на тележке, без фундамента'], kk: ['Жылжымалы', 'арбашада, іргетассыз'], en: ['Portable', 'on a base frame, no foundation'] }
+      { p: 'assets/var-jib-column.webp', ru: ['На колонне', 'поворот 180° или 360°'], kk: ['Бағанада', '180° немесе 360° бұрылыс'], en: ['Column-mounted', '180° or 360° slew'] },
+      { p: 'assets/jib-wall.webp', ru: ['Настенный', 'крепится к колонне здания'], kk: ['Қабырғалық', 'ғимарат бағанасына бекітіледі'], en: ['Wall-mounted', 'fixed to a building column'] }
     ],
     specs: {
       ru: [['Грузоподъёмность', '0,25-5 т'], ['Вылет стрелы', '2-8 м'], ['Угол поворота', '180° / 270° / 360°'], ['Привод', 'ручной или электрический'], ['Монтаж', 'на фундамент или к колонне']],
@@ -103,10 +79,8 @@ const DETAILS = {
     kk: { t: 'Кран-балкалар', lead: 'Цех пен шеберханаға арналған жеңіл кран: бір арқалық, таль, қарапайым электрика.' },
     en: { t: 'Beam cranes', lead: 'A light crane for shops and workshops: one girder, a hoist, simple wiring.' },
     variants: [
-      { s: SCH.beamSupport, ru: ['Опорная', 'катится по подкрановым путям'], kk: ['Тіреуішті', 'кран асты жолымен домалайды'], en: ['Top-running', 'rolls along runway rails'] },
-      { s: SCH.beamSusp, ru: ['Подвесная', 'подвешена к перекрытию'], kk: ['Аспалы', 'жабынға ілінеді'], en: ['Underhung', 'suspended from the roof structure'] },
-      { s: SCH.beamManual, ru: ['Ручная', 'без электрики, до 5 т'], kk: ['Қолмен басқарылатын', 'электрикасыз, 5 т дейін'], en: ['Manual', 'no wiring, up to 5 t'] },
-      { s: SCH.beamDouble, ru: ['С двумя талями', 'для длинномерных грузов'], kk: ['Екі тальді', 'ұзын жүктерге'], en: ['Twin hoist', 'for long loads'] }
+      { p: 'assets/bridge-single-shop.webp', ru: ['Опорная', 'катится по подкрановым путям'], kk: ['Тіреуішті', 'кран асты жолымен домалайды'], en: ['Top-running', 'rolls along runway rails'] },
+      { p: 'assets/bridge-susp-blue.webp', ru: ['Подвесная', 'к перекрытию, гибкий токоподвод'], kk: ['Аспалы', 'жабынға ілінеді, иілгіш ток өткізгіш'], en: ['Underhung', 'from the roof, festoon power supply'] }
     ],
     specs: {
       ru: [['Грузоподъёмность', '0,5-10 т'], ['Пролёт', '3-16 м'], ['Высота подъёма', 'до 12 м'], ['Скорость подъёма', '4 / 8 м/мин'], ['Управление', 'пульт с пола или радио']],
@@ -145,7 +119,7 @@ const DETAILS = {
     ]
   },
   hoist: {
-    hero: 'assets/hoist-vfd.webp',
+    hero: 'assets/hoist-rope.webp',
     ru: { t: 'Тали и тельферы', lead: 'Механизм подъёма: ставится на кран-балку, консольный кран или отдельную балку.' },
     kk: { t: 'Тальдар мен тельферлер', lead: 'Көтеру механизмі: кран-балкаға, консольді кранға немесе жеке арқалыққа орнатылады.' },
     en: { t: 'Hoists', lead: 'The lifting unit itself: fitted to a beam crane, a jib crane or a standalone girder.' },
@@ -160,7 +134,6 @@ const DETAILS = {
       en: [['Capacity', '0.25-20 t'], ['Lifting height', '6-36 m'], ['Hoisting speed', '2 / 4 / 8 m/min'], ['Duty class', 'M3-M6'], ['Control', 'pendant or radio']]
     },
     photos: [
-      { src: 'assets/hoist-vfd.webp', ru: 'Таль с частотным управлением на балке', kk: 'Арқалықтағы жиілікпен басқарылатын таль', en: 'Hoist with VFD control on a girder' },
       { src: 'assets/hoist-rope.webp', ru: 'Канатная электрическая таль', kk: 'Электрлі арқанды таль', en: 'Electric wire rope hoist' },
       { src: 'assets/hoist-shop-real.webp', ru: 'Сборка механизма подъёма в цехе', kk: 'Цехте көтеру механизмін құрастыру', en: 'Assembling a hoisting unit in the shop' },
       { src: 'assets/hoist-chain.webp', ru: 'Цепная таль с пультом управления', kk: 'Басқару пульті бар шынжырлы таль', en: 'Chain hoist with pendant control' },
@@ -363,7 +336,7 @@ const DL = {
     if (d.variants && d.variants.length) {
       vars = `<h4 class="dt-h">${t.variants}</h4><div class="dt-vars">` + d.variants.map(v => {
         const c = v[L] || v.ru;
-        const media = v.s ? `<div class="dt-sch">${v.s}</div>` : `<div class="dt-vimg"><img src="${v.p}" alt="${esc(c[0])}" loading="lazy" decoding="async"></div>`;
+        const media = `<div class="dt-vimg"><img src="${v.p}" alt="${esc(c[0])}" loading="lazy" decoding="async"></div>`;
         return `<article class="dt-var">${media}<h5>${esc(c[0])}</h5><p>${esc(c[1])}</p></article>`;
       }).join('') + '</div>';
     }
