@@ -2,12 +2,13 @@
 'use strict';
 
 /* =====================================================================
-   ТЕЛЕФОН КОМПАНИИ.
-   TODO: подставить WhatsApp, когда клиент даст номер.
-   Формат: только цифры с кодом страны, без плюса и пробелов.
-   При непустом PHONE кнопки "Позвонить" и "WhatsApp" включаются сами.
+   КОНТАКТЫ КОМПАНИИ (07.09.2026 - номера получены от клиента).
+   Ссылки tel: и wa.me прописаны прямо в index.html - в контактах,
+   в подвале и в липкой мобильной панели. Работают без JS.
+   WhatsApp привязан к первому номеру.
 ===================================================================== */
-const PHONE = '';
+const PHONES = ['77079093636', '77075559094'];
+const WHATSAPP = PHONES[0];
 const EMAIL = 'crane.engineering@mail.ru';
 
 const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -110,11 +111,11 @@ const I18N = {
     'ct.h2': 'Байланыс', 'ct.city': 'Алматы · бүкіл Қазақстан бойынша жұмыс істейміз',
     'ct.maillab': 'Пошта', 'ct.hourslab': 'Жұмыс кестесі',
     'ct.hours': 'Дс-Жм 09:00-18:00 · Сб, Жс - демалыс',
-    'ct.phonelab': 'Телефон', 'ct.call': 'Қоңырау шалу',
-    'ct.soon': 'нөмір жақында пайда болады', 'ct.soon2': 'нөмір жақында пайда болады',
+    'ct.phonelab': 'Телефон',
+    'ct.wahint': 'мессенджерге жазу',
     'ct.mappin': 'Алматы', 'ct.qr': 'телефон камерасын бағыттаңыз',
     'ft.tag': 'Крандар мен жүк көтергіш жабдық · Алматы',
-    'soon': 'жақында', 'soon2': 'жақында', 'mb.mail': 'Пошта', 'mb.req': 'Өтінім'
+    'mb.call': 'Қоңырау', 'mb.mail': 'Пошта', 'mb.req': 'Өтінім'
   },
   en: {
     'meta.title': 'CRANE ENGINEERING - overhead and gantry cranes 0.5-200 t, Almaty',
@@ -212,11 +213,11 @@ const I18N = {
     'ct.h2': 'Contacts', 'ct.city': 'Almaty · working across Kazakhstan',
     'ct.maillab': 'Email', 'ct.hourslab': 'Hours',
     'ct.hours': 'Mon-Fri 09:00-18:00 · Sat-Sun closed',
-    'ct.phonelab': 'Phone', 'ct.call': 'Call us',
-    'ct.soon': 'number coming soon', 'ct.soon2': 'number coming soon',
+    'ct.phonelab': 'Phone',
+    'ct.wahint': 'message us on WhatsApp',
     'ct.mappin': 'Almaty', 'ct.qr': 'point your phone camera',
     'ft.tag': 'Cranes and lifting equipment · Almaty',
-    'soon': 'soon', 'soon2': 'soon', 'mb.mail': 'Email', 'mb.req': 'Request'
+    'mb.call': 'Call', 'mb.mail': 'Email', 'mb.req': 'Request'
   }
 };
 
@@ -274,28 +275,6 @@ document.querySelectorAll('.lang button').forEach(function(b){
   if(!l){ try{ l = localStorage.getItem('ce-lang'); }catch(e){} }
   if(l && l !== 'ru' && I18N[l]) setLang(l);
 })();
-
-/* ---------- телефонные кнопки ---------- */
-function applyPhone(){
-  if(!PHONE) return;
-  document.querySelectorAll('[data-need-phone]').forEach(function(el){
-    el.disabled = false;
-    el.removeAttribute('aria-disabled');
-    el.classList.remove('is-off');
-    const soon = el.parentElement ? el.parentElement.querySelector('.soon') : null;
-    if(soon) soon.hidden = true;
-    const sub = el.querySelector('i');
-    if(sub) sub.textContent = el.getAttribute('data-need-phone') === 'wa' ? 'WhatsApp' : 'Tel';
-    el.addEventListener('click', function(){
-      if(el.getAttribute('data-need-phone') === 'wa'){
-        window.open('https://wa.me/' + PHONE, '_blank');
-      }else{
-        location.href = 'tel:+' + PHONE;
-      }
-    });
-  });
-}
-applyPhone();
 
 /* ---------- шапка, меню, прогресс ---------- */
 const hdr = document.getElementById('hdr');
