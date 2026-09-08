@@ -397,7 +397,7 @@ a.ct-qr:hover .ct-qr-img{transform:scale(1.06)}
   background:var(--panel);border-radius:18px;padding:22px 22px 24px;
   display:flex;flex-direction:column;gap:9px;transition:transform .3s,box-shadow .3s;
 }
-a.ct-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4),0 0 0 1.5px var(--yellow)}
+a.ct-card:hover,.ct-wa:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.4),0 0 0 1.5px var(--yellow)}
 .ct-lab{font:700 11.5px/1 "Geologica",sans-serif;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase}
 .ct-val{font:600 15.5px/1.4 "Geologica",sans-serif;word-break:break-word}
 /* телефоны и WhatsApp в контактах */

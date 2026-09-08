@@ -5,10 +5,10 @@
    КОНТАКТЫ КОМПАНИИ (07.09.2026 - номера получены от клиента).
    Ссылки tel: и wa.me прописаны прямо в index.html - в контактах,
    в подвале и в липкой мобильной панели. Работают без JS.
-   WhatsApp привязан к первому номеру.
+   WhatsApp работает на обоих номерах.
 ===================================================================== */
 const PHONES = ['77079093636', '77075559094'];
-const WHATSAPP = PHONES[0];
+const WHATSAPP = PHONES;
 const EMAIL = 'crane.engineering@mail.ru';
 
 const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -111,6 +111,7 @@ const I18N = {
     'ct.maillab': 'Пошта', 'ct.hourslab': 'Жұмыс кестесі',
     'ct.hours': 'Дс-Жм 09:00-18:00 · Сб, Жс - демалыс',
     'ct.phonelab': 'Телефон',
+    'ct.phwa': 'екі нөмір де WhatsApp-та жұмыс істейді',
     'ct.wahint': 'мессенджерге жазу',
     'ct.mappin': 'Алматы', 'ct.qr': 'телефон камерасын бағыттаңыз',
     'ft.tag': 'Крандар мен жүк көтергіш жабдық · Алматы',
@@ -212,6 +213,7 @@ const I18N = {
     'ct.maillab': 'Email', 'ct.hourslab': 'Hours',
     'ct.hours': 'Mon-Fri 09:00-18:00 · Sat-Sun closed',
     'ct.phonelab': 'Phone',
+    'ct.phwa': 'both numbers are on WhatsApp',
     'ct.wahint': 'message us on WhatsApp',
     'ct.mappin': 'Almaty', 'ct.qr': 'point your phone camera',
     'ft.tag': 'Cranes and lifting equipment · Almaty',
