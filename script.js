@@ -460,6 +460,8 @@ if(form){
       L.f
     ];
     const subject = L.s + (name ? ' - ' + name : '');
+    // конверсия Google Ads: отправка заявки формой
+    if(typeof window.ceConversion === 'function') window.ceConversion('AW-18446197975/Zz1dCL_ghvUcENfJ6ttE');
     location.href = 'mailto:' + EMAIL +
       '?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(lines.join('\n'));

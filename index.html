@@ -3,6 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) - Google Ads AW-18446197975 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18446197975"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18446197975');
+</script>
+<script>
+/* Цели Google Ads: звонок, заявка формой, обращение (WhatsApp / почта).
+   Ссылки tel: и mailto: уводят страницу - шлём конверсию с event_callback
+   и страховочным таймаутом, чтобы клик не потерялся, если тег не ответил. */
+(function(){
+  var AW = 'AW-18446197975/';
+  var GOAL = {
+    call:    AW + 'G5d0CPbAhvUcENfJ6ttE',
+    lead:    AW + 'Zz1dCL_ghvUcENfJ6ttE',
+    contact: AW + '4MkgCNjpivUcENfJ6ttE'
+  };
+  function fire(goal, url){
+    var go, done = false;
+    if(url){
+      go = function(){ if(done) return; done = true; location.href = url; };
+    }
+    if(typeof gtag !== 'function'){ if(go) go(); return; }
+    gtag('event', 'conversion', {
+      'send_to': goal,
+      'value': 1.0,
+      'currency': 'USD',
+      'event_callback': go
+    });
+    if(go) setTimeout(go, 900);
+  }
+  window.ceConversion = fire;
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    var a = t && t.closest ? t.closest('a[href]') : null;
+    if(!a) return;
+    var h = a.getAttribute('href') || '';
+    if(h.indexOf('tel:') === 0){ e.preventDefault(); fire(GOAL.call, h); return; }
+    if(h.indexOf('mailto:') === 0){ e.preventDefault(); fire(GOAL.contact, h); return; }
+    if(h.indexOf('wa.me') > -1 || h.indexOf('api.whatsapp.com') > -1){ fire(GOAL.contact); }
+  }, true);
+})();
+</script>
 <title>CRANE ENGINEERING - краны и грузоподъёмное оборудование от 0,5 до 200 т в Алматы</title>
 <meta name="description" content="Производство мостовых, козловых и консольных кранов, кран-балок, грейферов и талей от 0,5 до 200 т. Металлообработка, монтаж, обследование, техдокументация. Алматы, работаем по всему Казахстану.">
 <link rel="canonical" href="https://crane-engineering.kz/">
@@ -25,7 +70,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260909-2">
+<link rel="stylesheet" href="styles.css?v=20260912-1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -647,7 +692,7 @@
   </div>
 </div>
 
-<script src="script.js?v=20260909-2"></script>
-<script src="details.js?v=20260909-2"></script>
+<script src="script.js?v=20260912-1"></script>
+<script src="details.js?v=20260912-1"></script>
 </body>
 </html>
